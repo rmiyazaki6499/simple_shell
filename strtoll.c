@@ -25,7 +25,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	return (new_node);
 }
 
-str_ll *strtoll(char *str, char delim)
+str_ll *strtoll(char *str, char *delim)
 {
 	char *token = _strtok(path, delim);
 	list_t *node = NULL;
