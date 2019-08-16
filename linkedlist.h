@@ -6,7 +6,7 @@
 typedef struct str_ll_s
 {
 	char *string;
-	struct str_ll *next;
+	struct str_ll_s *next;
 } str_ll;
 
 str_ll *_strtoll(char *str, char *delim);

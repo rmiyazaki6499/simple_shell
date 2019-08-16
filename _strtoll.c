@@ -1,4 +1,5 @@
 #include "linkedlist.h"
+#include "stringwrapper.h"
 
 str_ll *add_node_end(str_ll **head, const char *str)
 {
