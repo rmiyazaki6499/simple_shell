@@ -1,7 +1,9 @@
-char *getenv(const char *name);
+#include <string.h>
+
+char *getenv(const char *name)
 {
 	extern char **environ;
-	size_t env_length;
+	size_t env_length, i;
 
 	if (!environ || !name)
 		return (NULL);
@@ -10,7 +12,7 @@ char *getenv(const char *name);
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (_strncmp(environ[i], name, env_length) == 0 && environ[env_length] == '=')
+		if ((_strncmp(environ[i], name, env_length) == 0) && (environ[env_length] == '='))
 			return (environ[i] + env_length + 1);
 	}
 	return (NULL);

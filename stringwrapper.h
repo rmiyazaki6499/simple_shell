@@ -24,7 +24,10 @@ char *_strcat(char *dest, const char *src);
 {
 	return (strcat(dest, src));
 }
-
+char *_strdup(const char *s);
+{
+	return (strdup(s));
+}	
 ssize_t get_nargs(char *s, char *delim);
 char *strtow(char *s, char *delim);
 
