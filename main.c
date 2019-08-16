@@ -1,3 +1,7 @@
+#include "stringwrapper.h"
+#include "linkedlist.h"
+#include "inputhelper.h"
+#include "environment.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -11,6 +15,9 @@ int main(void)
 	size_t input_length;
 	char *child_program_argv[2] = {NULL, NULL};
 	pid_t child_pid;
+	str_ll *path_ll;
+
+	path_ll = _strtoll(_getenv("PATH"), ":");
 
 	while (1)
 	{
@@ -26,7 +33,9 @@ int main(void)
 
 		input[bytes_read - 1] = '\0';
 
-		child_program_argv[0] = input;
+		child_program_argv[0] = _which(input, path_ll);
+		if (child_program_argv[0] == NULL)
+			perror(child_program_argv[0]);
 
 		child_pid = fork();
 		if (child_pid < 0)
@@ -36,7 +45,7 @@ int main(void)
 		}
 		else if (child_pid == 0)
 		{
-			if (execve(input, child_program_argv, NULL) == -1)
+			if (execve(child_program_argv[0], child_program_argv, NULL) == -1)
 			{
 				perror("Error");
 				free(input);

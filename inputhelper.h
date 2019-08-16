@@ -1,7 +1,9 @@
 #ifndef INPUTHELPER_H
 #define INPUTHELPER_H
 
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+#include <stdio.h>
+
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	return (getline(lineptr, n, stream));
 }

@@ -1,8 +1,9 @@
-#include <string.h>
+#include "environment.h"
+#include "stringwrapper.h"
+#include "linkedlist.h"
 
-char *getenv(const char *name)
+char *_getenv(const char *name)
 {
-	extern char **environ;
 	size_t env_length, i;
 
 	if (!environ || !name)
