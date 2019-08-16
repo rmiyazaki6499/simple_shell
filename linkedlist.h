@@ -7,7 +7,7 @@ typedef struct str_ll
 	struct str_ll *next;
 } str_ll;
 
-str_ll strtoll(char *str, char delim);
+str_ll *strtoll(char *str, char delim);
 char *_which(char *cmd);
 
 #endif /* LINKEDLIST_H */
