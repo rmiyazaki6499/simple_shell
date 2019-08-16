@@ -1,9 +1,9 @@
 #include "linkedlist.h"
 
-list_t *add_node_end(list_t **head, const char *str)
+str_ll *add_node_end(str_ll **head, const char *str)
 {
-	list_t *new_node = malloc(sizeof(list_t));
-	list_t *last = *head;
+	str_ll *new_node = malloc(sizeof(list_t));
+	str_ll *last = *head;
 
 	if (new_node == NULL)
 		return (NULL);
