@@ -8,8 +8,9 @@ char *_which(char *cmd, str_ll *head)
 {
 	size_t cmd_length, str_length;
 	char *check_pointer;
+	struct stat st;
 
-	if (stat(cmd) == 0)
+	if (stat(cmd, NULL) == 0)
 		return (_strdup(cmd));
 	
 	cmd_length = _strlen(cmd);
@@ -21,7 +22,7 @@ char *_which(char *cmd, str_ll *head)
 		_strcpy(check_pointer, head->string);
 		_strcat(check_pointer, "/");
 		_strcat(check_pointer, cmd);
-		if (stat(check_pointer) == 0)
+		if (stat(check_pointer, NULL) == 0)
 			return (check_pointer);
 		free(check_pointer);
 		head = head->next;
