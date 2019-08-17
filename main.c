@@ -48,8 +48,11 @@ int main(void)
 
 		function = get_builtin_func(child_program_argv[0]);
 		if (function)
+		{
 			function(child_program_argv + 1);
-
+			frees(2, input, child_program_argv);
+			continue;
+		}
 		child_program_argv[0] = _which(child_program_argv[0], path_ll);
 		if (child_program_argv[0] == NULL)
 		{

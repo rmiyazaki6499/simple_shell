@@ -7,9 +7,9 @@ int (*get_builtin_func(char *name))(char **name)
 	int i;
 
 	builtin_func getbuiltin_func[] = {
-		{"env", printenv},
+		{"env", _printenv},
+		{"cd", _cd},
 		/*		{"exit", exit_function},
-				{"cd", cd_function},
 				{"alias", alias_function},
 				{"help", help_function},
 				*/		{NULL, NULL}

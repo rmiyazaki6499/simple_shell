@@ -1,7 +1,7 @@
 #ifndef ENVIRONMENT_H
 #define ENVIRONMENT_H
 
-#include <stdio.h>
+#include "stdlibwrapper.h"
 
 extern char **environ;
 
@@ -15,6 +15,6 @@ extern env_t *env_head;
 
 char *_getenv(const char *name);
 env_t *get_environment(void);
-int printenv(char **arguments);
+int _printenv(char **arguments);
 
 #endif /* ENVIRONMENT_H */

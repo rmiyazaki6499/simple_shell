@@ -1,6 +1,7 @@
 #include "environment.h"
+#include <stdio.h>
 
-int printenv(char **arguments)
+int _printenv(char **arguments)
 {
 	const env_t *current_node = env_head;
 
