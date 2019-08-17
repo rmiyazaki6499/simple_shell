@@ -35,11 +35,6 @@ str_ll *_strtoll(char *str, char *delim)
 
 	while (token != NULL)
 	{
-		if (!*token)
-		{
-			token = _strtok(NULL, delim);
-			continue;
-		}
 		add_node_end(&node, token);
 		printf("%s\n", token);
 		token = _strtok(NULL, delim);

@@ -11,20 +11,17 @@ char *_which(char *cmd, str_ll *head)
 	char *check_pointer;
 	struct stat st;
 
-	if (stat(cmd, &st) == 0)
+	if (cmd[0] == "/" && stat(cmd, &st) == 0)
 		return (_strdup(cmd));
 
 	cmd_length = _strlen(cmd);
 
 	while (head)
 	{
-		printf("Looking at :: %s\n", head->string);
 		str_length = _strlen(head->string);
 		check_pointer = malloc((str_length || 1) + cmd_length + 2);
 		if (str_length == 0)
-		{
 			_strcpy(check_pointer, ".");
-		}
 		else
 			_strcpy(check_pointer, head->string);
 		_strcat(check_pointer, "/");
