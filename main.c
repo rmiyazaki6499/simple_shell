@@ -19,6 +19,7 @@ int main(void)
 	char **child_program_argv;
 	pid_t child_pid;
 	str_ll *path_ll;
+	int (*function)(char **name) = NULL;
 
 	env_head = get_environment();
 	path_ll = _strtoll(_getenv("PATH"), ":");
@@ -44,6 +45,10 @@ int main(void)
 			free(input);
 			continue;
 		}
+
+		function = get_builtin_func(child_program_argv[0]);
+		if (function)
+			function(child_program_argv + 1);
 
 		child_program_argv[0] = _which(child_program_argv[0], path_ll);
 		if (child_program_argv[0] == NULL)
