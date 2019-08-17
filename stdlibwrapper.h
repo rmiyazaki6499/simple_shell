@@ -2,6 +2,7 @@
 #define STDLIBWRAPPER_H
 
 #include <stdlib.h>
+#include <stdarg.h>
 
 void frees(size_t n, ...);
 
