@@ -9,6 +9,7 @@ int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strtok(char *str, const char *delim);
 char *_strcpy(char *dest, const char *src);
+char *_strncpy(char *dest, const char *src, size_t n);
 char *_strcat(char *dest, const char *src);
 char *_strdup(const char *s);
 char *_strndup(const char *s, size_t n);
