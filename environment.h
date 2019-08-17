@@ -11,8 +11,11 @@ typedef struct env_s {
 	struct env_s* next;
 } env_t;
 
+extern env_t *env_head;
+
 char *_getenv(const char *name);
 env_t *get_environment(void);
-int printenv(const env_t *head);
+int printenv(char **arguments);
+
 
 #endif /* ENVIRONMENT_H */

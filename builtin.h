@@ -6,7 +6,7 @@
 typedef struct builtin_func_t
 {
 	char *func_name;
-	int (*function)(char *);
+	int (*function)(char **);
 	struct builtin_t_ *next;
 } builtin_func;
 
@@ -24,7 +24,7 @@ typedef struct builtin_sd_t
 	struct builtin_t_ *next;
 } builtin_sd;
 
-int (*get_builtin_func(char *name))(char *name);
+int (*get_builtin_func(char *name))(char **name);
 char **get_builtin_ld(char *name);
 char *get_builtin_sd(char *name);
 

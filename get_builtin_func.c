@@ -1,7 +1,7 @@
 #include "builtin.h"
 #include "environment.h"
 
-int (*get_builtin_func(char *name))(char *name)
+int (*get_builtin_func(char *name))(char **name)
 {
 	int i;
 
