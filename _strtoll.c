@@ -1,6 +1,8 @@
 #include "linkedlist.h"
 #include "stringwrapper.h"
 
+#include <stdio.h>
+
 str_ll *add_node_end(str_ll **head, const char *str)
 {
 	str_ll *new_node = malloc(sizeof(str_ll));
@@ -39,6 +41,7 @@ str_ll *_strtoll(char *str, char *delim)
 			continue;
 		}
 		add_node_end(&node, token);
+		printf("%s\n", token);
 		token = _strtok(NULL, delim);
 	}
 	return (node);

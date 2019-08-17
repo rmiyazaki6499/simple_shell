@@ -18,9 +18,15 @@ char *_which(char *cmd, str_ll *head)
 
 	while (head)
 	{
+		printf("Looking at :: %s\n", head->string);
 		str_length = _strlen(head->string);
-		check_pointer = malloc(str_length + cmd_length + 2);
-		_strcpy(check_pointer, head->string);
+		check_pointer = malloc((str_length || 1) + cmd_length + 2);
+		if (str_length == 0)
+		{
+			_strcpy(check_pointer, ".");
+		}
+		else
+			_strcpy(check_pointer, head->string);
 		_strcat(check_pointer, "/");
 		_strcat(check_pointer, cmd);
 		if (stat(check_pointer, &st) == 0)
