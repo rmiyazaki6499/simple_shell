@@ -17,5 +17,4 @@ char *_getenv(const char *name);
 env_t *get_environment(void);
 int printenv(char **arguments);
 
-
 #endif /* ENVIRONMENT_H */

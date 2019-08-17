@@ -9,6 +9,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+env_t *env_head = NULL;
+
 int main(void)
 {
 	ssize_t bytes_read;
