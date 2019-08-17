@@ -1,10 +1,10 @@
 #include "builtin.h"
 
-int (*get_builtin(char *format))(char *format, va_list)
+int (*get_builtin(char *name))
 {
 	int i;
 
-	builtin getfunction[] = {
+	builtini_t getbuiltin[] = {
 /*		{"exit", exit_function, long_description, short_description},
 		{"cd", cd_function, long_description, short_description},
 		{"alias", alias_function, long_description, short_description},
@@ -12,12 +12,12 @@ int (*get_builtin(char *format))(char *format, va_list)
 */		{NULL, NULL, NULL, NULL}
 	};
 
-	if (format[1] == ' ' || format[1] == '\0')
+	if (name == NULL)
 		return (NULL);
-	for (i = 0; getfn[i].specifier; i++)
+	for (i = 0; getbuiltin[i].func_name; i++)
 	{
-		if (format[1] == getfn[i].specifier[1])
-			return (getfn[i].fn);
+		if (name == getbuiltin[i])
+			return (getbuiltin[i]);
 	}
 	return (NULL);
 }
