@@ -11,5 +11,6 @@ typedef struct str_ll_s
 
 str_ll *_strtoll(char *str, char *delim);
 char *_which(char *cmd, str_ll *head);
+void free_list(str_ll *head);
 
 #endif /* LINKEDLIST_H */

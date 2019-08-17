@@ -51,6 +51,8 @@ int main(void)
 		if (child_pid < 0)
 		{
 			perror("Error");
+			free(input);
+			free_linkedlist(path_ll);
 			exit(1);
 		}
 		else if (child_pid == 0)
@@ -59,6 +61,7 @@ int main(void)
 			{
 				perror("Error");
 				free(input);
+				free_linkedlist(path_ll);
 				exit(127);
 			}
 		}
@@ -68,6 +71,8 @@ int main(void)
 		input = NULL;
 		input_length = 0;
 	}
+
+	free_linkedlist(path_ll);	
 
 	return (EXIT_SUCCESS);
 }
