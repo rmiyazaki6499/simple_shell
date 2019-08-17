@@ -3,6 +3,11 @@
 #include "linkedlist.h"
 #include "global.h"
 
+/**
+ * _getenv - a function gets and environment variable.
+ * @name: name of environment variable
+ * Return: pointer to environment variable
+ */
 char *_getenv(const char *name)
 {
 	size_t env_length, i;

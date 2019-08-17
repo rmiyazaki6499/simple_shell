@@ -6,10 +6,20 @@
 
 extern char **environ;
 
-typedef struct env_s {
+/**
+ * struct env_s - linked list of environments
+ * @name: name of environment variable
+ * @value: value of environment variable
+ * @next: points to the next node
+ *
+ * Description: linked list node structure
+ * for simple shell
+ */
+typedef struct env_s
+{
 	char *name;
 	char *value;
-	struct env_s* next;
+	struct env_s *next;
 } env_t;
 
 void free_env(env_t *head);

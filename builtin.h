@@ -5,6 +5,14 @@
 
 extern int status;
 
+/**
+ * struct str_ll_s - linked list
+ * @string: malloc'ed string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for simple shell
+ */
 typedef struct builtin_func_t
 {
 	char *func_name;
@@ -12,6 +20,14 @@ typedef struct builtin_func_t
 	struct builtin_t_ *next;
 } builtin_func;
 
+/**
+ * struct str_ll_s - linked list
+ * @string: malloc'ed string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for simple shell
+ */
 typedef struct builtin_ld_t
 {
 	char *func_name;
@@ -19,6 +35,14 @@ typedef struct builtin_ld_t
 	struct builtin_t_ *next;
 } builtin_ld;
 
+/**
+ * struct str_ll_s - linked list
+ * @string: malloc'ed string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for simple shell
+ */
 typedef struct builtin_sd_t
 {
 	char *func_name;
@@ -32,6 +56,6 @@ char *get_builtin_sd(char *name);
 
 int _cd(char **arguments);
 int _printenv(char **arguments);
-int exit_(char** arguments);
+int exit_(char **arguments);
 
 #endif /* BUILTIN_H */

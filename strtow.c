@@ -1,6 +1,12 @@
 #include <stdlib.h>
 #include "stringwrapper.h"
 
+/**
+ * strtow - a function that splits a string into words.
+ * @s: input string
+ * @delim: delimiter
+ * Return: a pointer to an array of strings (words)
+ */
 char **strtow(char *s, char *delim)
 {
 	ssize_t nargs;

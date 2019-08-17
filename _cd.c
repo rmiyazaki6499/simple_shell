@@ -3,6 +3,11 @@
 #include "environment.h"
 #include <unistd.h>
 
+/**
+ * _cd - a function that changes the directory.
+ * @arguments: input arguments
+ * Return: status
+ */
 int _cd(char **arguments)
 {
 	int status;
