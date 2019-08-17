@@ -11,7 +11,7 @@ char *_which(char *cmd, str_ll *head)
 	char *check_pointer;
 	struct stat st;
 
-	if (cmd[0] == "/" && stat(cmd, &st) == 0)
+	if (cmd[0] == '/' && stat(cmd, &st) == 0)
 		return (_strdup(cmd));
 
 	cmd_length = _strlen(cmd);
