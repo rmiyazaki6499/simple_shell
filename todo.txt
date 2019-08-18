@@ -1,0 +1,11 @@
+r? - setenv, unsetenv
+... environ_ll to char ** and free that too in child
+betty (b&r - refactor long functions)
+r - puts inplace of printf
+r - man page
+r - readme
+b - blog post
+r - help (sd, ld)
+b - error messages
+r - AUTHORS
+b - strtok
