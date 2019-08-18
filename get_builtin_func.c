@@ -11,6 +11,7 @@ int (*get_builtin_func(char *name))(char **name)
 		{"cd", _cd},
 		{"exit", exit_},
 		{"help", _help},
+		{"setenv", _setenv},
 		{NULL, NULL}
 	};
 
