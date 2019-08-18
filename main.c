@@ -33,9 +33,7 @@ void handle_fork(pid_t child_pid, char *child_name)
 	if (child_pid < 0)
 	{
 		perror("Error");
-		frees(3, global()->input, child_name, global()->child_argv);
-		free_linkedlist(global()->path_ll);
-		free_env(global()->env_head);
+		frees(2, global()->input, child_name);
 		exit(1);
 	}
 	else if (child_pid == 0)
@@ -45,9 +43,7 @@ void handle_fork(pid_t child_pid, char *child_name)
 			perror("Error");
 			global()->status = 126;
 			frees(3, global()->input, child_name, global()->child_argv);
-			free_linkedlist(global()->path_ll);
-			free_env(global()->env_head);
-			exit(127);
+			exit(126);
 		}
 	}
 	else
@@ -74,7 +70,6 @@ void destruct(void)
 {
 	free_env(global()->env_head);
 	free_linkedlist(global()->path_ll);
-	free(global()->child_argv);
 }
 
 /**
@@ -111,7 +106,7 @@ int main(int argc, char *argv[])
 		global()->child_argv = strtow(global()->input, " ");
 		if (!global()->child_argv)
 		{
-			free(global()->input);
+			frees(2, global()->input, global()->child_argv);
 			continue;
 		}
 
@@ -126,16 +121,21 @@ int main(int argc, char *argv[])
 		child_name = _which(global()->child_argv[0], global()->path_ll);
 		if (child_name == NULL)
 		{
-			print_error(argv[0]);
 			global()->status = 127;
+			print_error(argv[0]);
 			frees(2, global()->input, global()->child_argv);
 			continue;
 		}
-
+		else if (access(child_name, X_OK) != 0)
+		{
+			global()->status = 126;
+			print_error(argv[0]);
+			frees(3, global()->input, child_name, global()->child_argv);
+			continue;
+		}
 		child_pid = fork();
 		handle_fork(child_pid, child_name);
 		frees(3, global()->input, child_name, global()->child_argv);
 	}
-
 	return (global()->status);
 }
