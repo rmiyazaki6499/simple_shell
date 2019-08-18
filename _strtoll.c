@@ -53,13 +53,28 @@ str_ll *add_node_at_index(str_ll **head, const char *str, size_t index)
 
 str_ll *_strtoll(char *str, char *delim)
 {
-	char *token = _strtok(str, delim);
+	size_t length, delim_length;
 	str_ll *node = NULL;
+	char *value;
 
-	while (token != NULL)
+	delim_length = _strlen(delim);
+	while (1)
 	{
-		add_node_end(&node, token);
-		token = _strtok(NULL, delim);
+		while (_strncmp(str, delim, delim_length) == 0)
+			str += delim_length;
+
+		if (!*str)
+			break;
+
+		length = 0;
+		while (str[length] && _strncmp(str + length, delim, delim_length) != 0)
+			length++;
+
+		value = _strndup(str, length);
+		add_node_end(&node, value);
+		free(value);
+		str += length;
 	}
+
 	return (node);
 }
