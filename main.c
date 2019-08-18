@@ -89,7 +89,7 @@ int main(void)
 
 		frees(3, input, child_program_name, child_program_argv);
 	}
-
+	free(child_program_argv);
 	free_env(get_global()->env_head);
 	free_linkedlist(path_ll);
 
