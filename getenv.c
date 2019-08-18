@@ -10,7 +10,7 @@
  */
 char *_getenv(const char *name)
 {
-	size_t env_length, i;
+	size_t env_length;
 	env_t *ep = get_global()->env_head;
 
 	if (!ep || !name)

@@ -13,7 +13,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	static char *buffer;
 	static size_t bufsize;
 	char buf120[120];
-	size_t bytes, position = 0;
+	ssize_t bytes, position = 0;
 
 	if (*lineptr)
 	{

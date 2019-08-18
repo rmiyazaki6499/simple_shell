@@ -37,4 +37,5 @@ int exit_(char **arguments)
 	{
 		puts("Bad input");
 	}
+	return (2);
 }

@@ -13,7 +13,7 @@
  */
 char *_which(char *cmd, str_ll *head)
 {
-	size_t cmd_length, str_length;
+	size_t cmd_length;
 	char *check_pointer, *current_string;
 	struct stat st;
 
