@@ -81,7 +81,7 @@ void destruct(void)
  *
  * Return: EXIT_SUCCESS on success, else an error code
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	ssize_t bytes_read;
 	char *child_name;
@@ -125,6 +125,7 @@ int main(void)
 		child_name = _which(get_global()->child_argv[0], get_global()->path_ll);
 		if (child_name == NULL)
 		{
+			print_error(argv[0]);
 			perror(child_name);
 			frees(2, get_global()->input, get_global()->child_argv);
 			continue;

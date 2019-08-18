@@ -27,11 +27,11 @@ typedef struct builtin_func_t
  * Description: singly linked list node structure
  * for simple shell
  */
-typedef struct builtin_sd_t
+typedef struct decriptions_t
 {
 	char *func_name;
-	char *short_description;
-} builtin_sd;
+	char *description;
+} descriptions;
 
 int (*get_builtin_func(char *name))(char **name);
 char *print_d(char *name);
