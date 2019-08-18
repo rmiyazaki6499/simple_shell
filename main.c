@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include "stdlibwrapper.h"
 #include "global.h"
 #include <signal.h>
 
@@ -43,6 +43,7 @@ void handle_fork(pid_t child_pid, char *child_name)
 		if (execve(child_name, global()->child_argv, environ) == -1)
 		{
 			perror("Error");
+			global()->status = 126;
 			frees(3, global()->input, child_name, global()->child_argv);
 			free_linkedlist(global()->path_ll);
 			free_env(global()->env_head);
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
 			free(global()->input);
 			if (isatty(STDIN_FILENO))
 				putchar('\n');
-			break;
+			return (global()->status);
 		}
 		(global()->input)[bytes_read - 1] = '\0';
 
@@ -126,7 +127,7 @@ int main(int argc, char *argv[])
 		if (child_name == NULL)
 		{
 			print_error(argv[0]);
-			perror(child_name);
+			global()->status = 127;
 			frees(2, global()->input, global()->child_argv);
 			continue;
 		}
@@ -136,5 +137,5 @@ int main(int argc, char *argv[])
 		frees(3, global()->input, child_name, global()->child_argv);
 	}
 
-	return (EXIT_SUCCESS);
+	return (global()->status);
 }

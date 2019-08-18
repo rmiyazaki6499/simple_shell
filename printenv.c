@@ -21,6 +21,7 @@ int _printenv(char **arguments)
 		_puts(current_node->name);
 		_puts("=");
 		_puts(current_node->value);
+		_puts("\n");
 		current_node = current_node->next;
 	}
 	return (0);
