@@ -2,6 +2,7 @@
 #define STRINGWRAPPER_H
 
 #include <strings.h>
+#include <sys/types.h>
 
 size_t _strlen(const char *s);
 {
@@ -24,5 +25,7 @@ char *_strcat(char *dest, const char *src);
 	return (strcat(dest, src));
 }
 
+ssize_t get_nargs(char *s, char *delim);
+char *strtow(char *s, char *delim);
 
 #endif /* STRINGWRAPPER_H */
