@@ -35,7 +35,7 @@ int delete_nodeint_at_index(env_t **head, unsigned int index)
 	}
 	next_node = temp_node->next;
 	temp_node->next = temp_node->next->next;
-	free(next_node);
+	frees(3, next_node->name, next_node->value, next_node);
 
 	return (1);
 }
