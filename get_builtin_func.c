@@ -2,6 +2,11 @@
 #include "environment.h"
 #include "stringwrapper.h"
 
+/**
+ * get_builtin_func - a function gets the builtin function.
+ * @name: name of builtin function
+ * Return: 0 on Succes, -1 on Failure
+ */
 int (*get_builtin_func(char *name))(char **name)
 {
 	int i;
@@ -11,7 +16,7 @@ int (*get_builtin_func(char *name))(char **name)
 		{"cd", _cd},
 		{"exit", exit_},
 		{"help", _help},
-
+		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
 		{NULL, NULL}
 	};

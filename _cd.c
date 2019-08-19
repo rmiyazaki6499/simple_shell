@@ -13,12 +13,10 @@ int _cd(char **arguments)
 {
 	int status;
 	char *path, *home, *temp_previous;
-	int free_path = 0;
 
 	if (!global()->previous)
 		global()->previous = getcwd(NULL, 0);
 	home = _getenv("HOME");
-
 	if (!arguments || !arguments[0] || !arguments[0][0])
 		path = _strdup(home);
 	else if (arguments[0][0] == '~')
@@ -26,7 +24,6 @@ int _cd(char **arguments)
 		path = malloc(sizeof(*path) * (_strlen(home) + _strlen(arguments[0])));
 		if (!path)
 			return (-1);
-		free_path = 1;
 
 		path = _strcpy(path, home);
 		path = _strcat(path, arguments[0] + 1);
@@ -49,8 +46,6 @@ int _cd(char **arguments)
 	}
 	else
 		free(temp_previous);
-
 	free(path);
-
 	return (status);
 }

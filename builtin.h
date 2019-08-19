@@ -20,7 +20,7 @@ typedef struct builtin_func_s
 } builtin_func;
 
 /**
- * struct descriptions - struct for help descriptions
+ * struct descriptions_s - struct for help descriptions
  * @func_name: name of function
  * @description: description for help
  *
@@ -45,6 +45,7 @@ int _help(char **arguments);
 int _cd(char **arguments);
 int _printenv(char **arguments);
 int exit_(char **arguments);
+int _setenv(char **arguments);
 
 int _unsetenv(char **arguments);
 

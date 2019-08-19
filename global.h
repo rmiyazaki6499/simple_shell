@@ -8,6 +8,11 @@
  * struct global_s - struct for  global variables
  * @env_head: pointer to environment linked list
  * @status: last exit status
+ * @input: input from command line
+ * @path_ll: pointer to struct path_ll
+ * @child_argv: arguments from child process
+ * @command_number: number of commands made
+ * @previous: previous
  *
  * Description: global variable structure
  * for Simple Shell

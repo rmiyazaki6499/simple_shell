@@ -1,9 +1,9 @@
 #include "stringwrapper.h"
 
 /**
- *  * print_number - a function that prints an integer.
- *   * @n: input integer
- *    */
+ * _print_number - a function that prints an integer.
+ * @n: input integer
+ */
 void _print_number(int n)
 {
 	unsigned int m;
