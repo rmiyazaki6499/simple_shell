@@ -27,5 +27,5 @@ int (*get_builtin_func(char *name))(char **name)
 		if (_strcmp(name, getbuiltin_func[i].func_name) == 0)
 			return (getbuiltin_func[i].function);
 	}
-	return (0);
+	return (NULL);
 }
