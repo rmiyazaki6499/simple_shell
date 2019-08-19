@@ -1,4 +1,4 @@
-#include <string.h>
+#include "stringwrapper.h"
 #include <sys/types.h>
 
 ssize_t get_nargs(char *s, char *delim)
