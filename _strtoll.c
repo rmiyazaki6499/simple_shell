@@ -2,13 +2,13 @@
 
 str_ll *add_node_end(str_ll **head, const char *str)
 {
-	str_ll *new_node = malloc(sizeof(list_t));
+	str_ll *new_node = malloc(sizeof(str_ll));
 	str_ll *last = *head;
 
 	if (new_node == NULL)
 		return (NULL);
 
-	new_node->str  = strdup(str);
+	new_node->string  = _strdup(str);
 	new_node->next = NULL;
 
 	if (*head == NULL)
@@ -25,10 +25,10 @@ str_ll *add_node_end(str_ll **head, const char *str)
 	return (new_node);
 }
 
-str_ll *strtoll(char *str, char *delim)
+str_ll *_strtoll(char *str, char *delim)
 {
-	char *token = _strtok(path, delim);
-	list_t *node = NULL;
+	char *token = _strtok(str, delim);
+	str_ll *node = NULL;
 
 	while (token != NULL)
 	{

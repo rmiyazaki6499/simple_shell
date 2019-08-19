@@ -1,13 +1,15 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-typedef struct str_ll
+#include <stdlib.h>
+
+typedef struct str_ll_s
 {
 	char *string;
 	struct str_ll *next;
 } str_ll;
 
-str_ll *strtoll(char *str, char *delim);
-char *_which(char *cmd);
+str_ll *_strtoll(char *str, char *delim);
+char *_which(char *cmd, str_ll *head);
 
 #endif /* LINKEDLIST_H */
