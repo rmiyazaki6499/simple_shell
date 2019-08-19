@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 	size_t input_length;
 	pid_t child_pid;
 	int (*function)(char **name) = NULL;
+	(void) argc;
 
 	while (1)
 	{
