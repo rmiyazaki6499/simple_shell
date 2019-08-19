@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdio.h>
 
 char *_which(char *cmd, str_ll *head)
 {
@@ -12,7 +13,7 @@ char *_which(char *cmd, str_ll *head)
 
 	if (stat(cmd, &st) == 0)
 		return (_strdup(cmd));
-	
+
 	cmd_length = _strlen(cmd);
 
 	while (head)
@@ -23,7 +24,9 @@ char *_which(char *cmd, str_ll *head)
 		_strcat(check_pointer, "/");
 		_strcat(check_pointer, cmd);
 		if (stat(check_pointer, &st) == 0)
+		{
 			return (check_pointer);
+		}
 		free(check_pointer);
 		head = head->next;
 	}
