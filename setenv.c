@@ -5,11 +5,16 @@
 
 env_t *add_env_node(env_t **head, char *name, char *value);
 
+/**
+ * _setenv - a function sets the environment variable.
+ * @arguments: arguments from command line
+ * Return: 0 on Success
+ */
 int _setenv(char **arguments)
 {
 	env_t *head = global()->env_head;
 	char *value;
-	
+
 	if (!arguments[0])
 	{
 		_printenv(arguments);
@@ -20,7 +25,7 @@ int _setenv(char **arguments)
 		value = arguments[1];
 	else
 		value = "";
-	
+
 	while (head != NULL)
 	{
 		if (_strcmp(head->name, arguments[0]) == 0)
