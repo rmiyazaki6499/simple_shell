@@ -21,7 +21,7 @@ int (*get_builtin_func(char *name))(char **name)
 	};
 
 	if (name == NULL)
-		return (-1);
+		return (NULL);
 	for (i = 0; getbuiltin_func[i].func_name; i++)
 	{
 		if (_strcmp(name, getbuiltin_func[i].func_name) == 0)
