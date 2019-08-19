@@ -76,7 +76,8 @@ void destruct(void)
 
 /**
  * main - entry point for shell program
- *
+ * @argc: argument count
+ * @argv: arguments
  * Return: EXIT_SUCCESS on success, else an error code
  */
 int main(int argc, char *argv[])
@@ -86,6 +87,7 @@ int main(int argc, char *argv[])
 	size_t input_length;
 	pid_t child_pid;
 	int (*function)(char **name) = NULL;
+	(void) argc;
 
 	while (1)
 	{

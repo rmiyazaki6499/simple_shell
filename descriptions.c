@@ -1,11 +1,13 @@
 #include "builtin.h"
 #include "stringwrapper.h"
 
+/**
+ * exit_description - a function that prints the description for exit.
+ */
 void exit_description(void)
 {
 	int i;
-	char *description[] = 
-	{
+	char *description[] = {
 		"exit: exit [n]",
 		"    Exit the shell.",
 		"",
@@ -21,11 +23,13 @@ void exit_description(void)
 	}
 }
 
+/**
+ * cd_description - a function that prints the description for exit.
+ */
 void cd_description(void)
 {
 	int i;
-	char *description[] =
-	{
+	char *description[] = {
 		"cd: cd [dir]",
 		"    Change the shell working directory.",
 		"",
@@ -53,11 +57,13 @@ void cd_description(void)
 	}
 }
 
+/**
+ * help_description - a function that prints the description for exit.
+ */
 void help_description(void)
 {
 	int i;
-	char *description[] =
-	{
+	char *description[] = {
 		"help: help [pattern ...]",
 		"    Display information about builtin commands.",
 		"",
@@ -78,11 +84,14 @@ void help_description(void)
 		_puts("\n");
 	}
 }
+
+/**
+ * setenv_description - a function that prints the description for exit.
+ */
 void setenv_description(void)
 {
 	int i;
-	char *description[] =
-	{
+	char *description[] = {
 		"setenv: setenv [var] [myvalue]",
 		"    define the value of environment variables.",
 		"",
@@ -101,11 +110,14 @@ void setenv_description(void)
 		_puts("\n");
 	}
 }
+
+/**
+ * unsetenv_description - a function that prints the description for exit.
+ */
 void unsetenv_description(void)
 {
 	int i;
-	char *description[] =
-	{
+	char *description[] = {
 		"unsetenv: unsetenv [var]",
 		"    remove an environment variable",
 		"",

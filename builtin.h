@@ -20,7 +20,7 @@ typedef struct builtin_func_s
 } builtin_func;
 
 /**
- * struct descriptions - struct for help descriptions
+ * struct descriptions_s - struct for help descriptions
  * @func_name: name of function
  * @description: description for help
  *
