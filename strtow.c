@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include "stringwrapper.h"
 
-char *strtow(char *s, char *delim)
+char **strtow(char *s, char *delim)
 {
 	ssize_t nargs;
-	char *token, *buffer;
+	char *token, **buffer;
 
 	nargs = get_nargs(s, delim);
 	if (nargs < 1)
