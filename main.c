@@ -23,6 +23,8 @@ int main(void)
 	{
 		printf("$ ");
 
+		input = NULL;
+		input_length = 0;
 		bytes_read = getline(&input, &input_length, stdin);
 		if (bytes_read == -1)
 		{
@@ -44,6 +46,7 @@ int main(void)
 		{
 			free(input);
 			perror(child_program_argv[0]);
+			free(child_program_argv);
 			continue;
 		}
 
