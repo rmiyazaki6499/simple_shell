@@ -10,7 +10,7 @@ char **strtow(char *s, char *delim)
 	if (nargs < 1)
 		return (NULL);
 
-	buffer = malloc(sizeof(*buffer) * nargs);
+	buffer = malloc(sizeof(*buffer) * (nargs + 1));
 	if (!buffer)
 		return (NULL);
 
@@ -27,6 +27,7 @@ char **strtow(char *s, char *delim)
 		buffer[nargs++] = token;
 		token = _strtok(NULL, delim);
 	}
+	buffer[nargs] = NULL;
 
 	return (buffer);
 }
