@@ -11,13 +11,15 @@
 int main(void)
 {
 	ssize_t bytes_read;
-	char *input;
+	char *input, *path_str;
 	size_t input_length;
 	char **child_program_argv;
 	pid_t child_pid;
 	str_ll *path_ll;
+	env_t *env_head;
 
-	path_ll = _strtoll(_getenv("PATH"), ":");
+	env_head = get_environment();
+	path_ll = _strtoll(_getenv("PATH", ":");
 
 	while (1)
 	{
