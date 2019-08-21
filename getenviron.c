@@ -2,8 +2,6 @@
 #include "stringwrapper.h"
 #include "environment.h"
 
-void free_env(env_t *head);
-
 env_t *add_env_node(env_t **head, char *name, char *value)
 {
 	env_t *new, *p;

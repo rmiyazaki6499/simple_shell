@@ -28,4 +28,7 @@ int (*get_builtin_func(char *name))(char **name);
 char **get_builtin_ld(char *name);
 char *get_builtin_sd(char *name);
 
+int _cd(char **arguments);
+int _printenv(char **arguments);
+
 #endif /* BUILTIN_H */

@@ -67,6 +67,7 @@ int main(void)
 			perror("Error");
 			free(input);
 			free_linkedlist(path_ll);
+			free_env(env_head);
 			exit(1);
 		}
 		else if (child_pid == 0)
@@ -76,6 +77,7 @@ int main(void)
 				perror("Error");
 				free(input);
 				free_linkedlist(path_ll);
+				free_env(env_head);
 				exit(127);
 			}
 		}
@@ -86,7 +88,8 @@ int main(void)
 		input_length = 0;
 	}
 
-	free_linkedlist(path_ll);	
+	free_env(env_head);
+	free_linkedlist(path_ll);
 
 	return (EXIT_SUCCESS);
 }

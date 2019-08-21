@@ -13,8 +13,8 @@ typedef struct env_s {
 
 extern env_t *env_head;
 
+void free_env(env_t *head);
 char *_getenv(const char *name);
 env_t *get_environment(void);
-int _printenv(char **arguments);
 
 #endif /* ENVIRONMENT_H */
