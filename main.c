@@ -71,8 +71,6 @@ int main(void)
 		else
 			wait(NULL);
 		free(input);
-		free(child_program_argv[0]);
-		free(child_program_argv);
 		input = NULL;
 		input_length = 0;
 	}
