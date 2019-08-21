@@ -19,7 +19,7 @@ int main(void)
 	env_t *env_head;
 
 	env_head = get_environment();
-	path_ll = _strtoll(_getenv("PATH", ":");
+	path_ll = _strtoll(_getenv("PATH"), ":");
 
 	while (1)
 	{
