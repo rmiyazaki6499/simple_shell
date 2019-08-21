@@ -16,7 +16,9 @@ int main(void)
 	char **child_program_argv;
 	pid_t child_pid;
 	str_ll *path_ll;
+	env_t *env_head;
 
+	env_head = get_environment();
 	path_ll = _strtoll(_getenv("PATH"), ":");
 
 	while (1)
