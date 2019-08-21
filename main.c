@@ -2,11 +2,14 @@
 #include "linkedlist.h"
 #include "inputhelper.h"
 #include "environment.h"
+#include "builtin.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+env_t *env_head = NULL;
 
 int main(void)
 {
@@ -16,7 +19,7 @@ int main(void)
 	char **child_program_argv;
 	pid_t child_pid;
 	str_ll *path_ll;
-	env_t *env_head;
+	int (*function)(char **name) = NULL;
 
 	env_head = get_environment();
 	path_ll = _strtoll(_getenv("PATH"), ":");
@@ -43,6 +46,13 @@ int main(void)
 			continue;
 		}
 
+		function = get_builtin_func(child_program_argv[0]);
+		if (function)
+		{
+			function(child_program_argv + 1);
+			frees(2, input, child_program_argv);
+			continue;
+		}
 		child_program_argv[0] = _which(child_program_argv[0], path_ll);
 		if (child_program_argv[0] == NULL)
 		{

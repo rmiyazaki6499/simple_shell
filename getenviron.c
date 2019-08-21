@@ -1,7 +1,6 @@
 #include "linkedlist.h"
 #include "stringwrapper.h"
 #include "environment.h"
-#include <stdio.h>
 
 void free_env(env_t *head);
 

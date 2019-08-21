@@ -5,6 +5,7 @@
 #include <sys/types.h>
 
 size_t _strlen(const char *s);
+int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strtok(char *str, const char *delim);
 char *_strcpy(char *dest, const char *src);

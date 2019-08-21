@@ -1,10 +1,11 @@
 #include "environment.h"
+#include <stdio.h>
 
-int printenv(const env_t *head)
+int _printenv(char **arguments)
 {
-	const env_t *current_node = head;
+	const env_t *current_node = env_head;
 
-	if (!head)
+	if (!env_head)
 		return (-1);
 
 	while (current_node != NULL)
