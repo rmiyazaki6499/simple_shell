@@ -11,7 +11,7 @@
 int main(void)
 {
 	ssize_t bytes_read;
-	char *input, *path_str;
+	char *input;
 	size_t input_length;
 	char **child_program_argv;
 	pid_t child_pid;
