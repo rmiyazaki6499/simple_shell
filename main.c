@@ -11,10 +11,40 @@
 
 env_t *env_head = NULL;
 
+str_ll *get_path(void)
+{
+	str_ll *head = NULL;
+	char *path_str = _getenv("PATH"), *start;
+	int add_current_dir = 0;
+
+	start = path_str;
+	if (*start == ':')
+		add_current_dir = 1;
+	else
+	{
+		while (*start)
+		{
+			if (*start == ':')
+				if (*(start + 1) == ':' || *(start + 1) == '\0')
+				{
+					add_current_dir = 1;
+					break;
+				}
+			start++;
+		}
+	}
+
+	head = _strtoll(path_str, ":");
+	if (add_current_dir)
+		add_node_end(&head, ".");
+
+	return (head);
+}
+
 int main(void)
 {
 	ssize_t bytes_read;
-	char *input;
+	char *input, *child_program_name;
 	size_t input_length;
 	char **child_program_argv;
 	pid_t child_pid;
@@ -22,7 +52,7 @@ int main(void)
 	int (*function)(char **name) = NULL;
 
 	env_head = get_environment();
-	path_ll = _strtoll(_getenv("PATH"), ":");
+	path_ll = get_path();
 
 	while (1)
 	{
@@ -46,6 +76,7 @@ int main(void)
 			continue;
 		}
 
+		// run a builtin
 		function = get_builtin_func(child_program_argv[0]);
 		if (function)
 		{
@@ -53,29 +84,31 @@ int main(void)
 			frees(2, input, child_program_argv);
 			continue;
 		}
-		child_program_argv[0] = _which(child_program_argv[0], path_ll);
-		if (child_program_argv[0] == NULL)
+
+		child_program_name = _which(child_program_argv[0], path_ll);
+		if (child_program_name == NULL)
 		{
+			perror(child_program_name);
 			frees(2, input, child_program_argv);
-			perror(child_program_argv[0]);
 			continue;
 		}
+		child_program_argv[0] = child_program_name;
 
 		child_pid = fork();
 		if (child_pid < 0)
 		{
 			perror("Error");
-			free(input);
+			frees(3, input, child_program_name, child_program_argv);
 			free_linkedlist(path_ll);
 			free_env(env_head);
 			exit(1);
 		}
 		else if (child_pid == 0)
 		{
-			if (execve(child_program_argv[0], child_program_argv, NULL) == -1)
+			if (execve(child_program_argv[0], child_program_argv, environ) == -1)
 			{
 				perror("Error");
-				free(input);
+				frees(3, input, child_program_name, child_program_argv);
 				free_linkedlist(path_ll);
 				free_env(env_head);
 				exit(127);
@@ -83,9 +116,7 @@ int main(void)
 		}
 		else
 			wait(NULL);
-		frees(3, input, child_program_argv[0], child_program_argv);
-		input = NULL;
-		input_length = 0;
+		frees(3, input, child_program_name, child_program_argv);
 	}
 
 	free_env(env_head);

@@ -8,7 +8,7 @@
 char *_which(char *cmd, str_ll *head)
 {
 	size_t cmd_length, str_length;
-	char *check_pointer;
+	char *check_pointer, *current_string;
 	struct stat st;
 
 	if (cmd[0] == '/' && stat(cmd, &st) == 0)
@@ -18,18 +18,19 @@ char *_which(char *cmd, str_ll *head)
 
 	while (head)
 	{
-		str_length = _strlen(head->string);
-		check_pointer = malloc((str_length || 1) + cmd_length + 2);
-		if (str_length == 0)
-			_strcpy(check_pointer, ".");
-		else
-			_strcpy(check_pointer, head->string);
+		current_string = (_strcmp(head->string, ".") == 0)
+			? getcwd(NULL, 0) : _strdup(head->string);
+
+		check_pointer = malloc(_strlen(current_string) + cmd_length + 2);
+
+		_strcpy(check_pointer, current_string);
+		free(current_string);
 		_strcat(check_pointer, "/");
 		_strcat(check_pointer, cmd);
+
 		if (stat(check_pointer, &st) == 0)
-		{
 			return (check_pointer);
-		}
+
 		free(check_pointer);
 		head = head->next;
 	}
