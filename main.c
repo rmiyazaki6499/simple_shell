@@ -11,36 +11,6 @@
 
 env_t *env_head = NULL;
 
-str_ll *get_path(void)
-{
-	str_ll *head = NULL;
-	char *path_str = _getenv("PATH"), *start;
-	int add_current_dir = 0;
-
-	start = path_str;
-	if (*start == ':')
-		add_current_dir = 1;
-	else
-	{
-		while (*start)
-		{
-			if (*start == ':')
-				if (*(start + 1) == ':' || *(start + 1) == '\0')
-				{
-					add_current_dir = 1;
-					break;
-				}
-			start++;
-		}
-	}
-
-	head = _strtoll(path_str, ":");
-	if (add_current_dir)
-		add_node_end(&head, ".");
-
-	return (head);
-}
-
 int main(void)
 {
 	ssize_t bytes_read;
@@ -56,7 +26,9 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");
+		// use isatty to avoid printing this
+		if (isatty(STDIN_FILENO))
+			printf("$ ");
 
 		input = NULL;
 		input_length = 0;
@@ -64,7 +36,8 @@ int main(void)
 		if (bytes_read == -1)
 		{
 			free(input);
-			putchar('\n');
+			if (isatty(STDIN_FILENO))
+				putchar('\n');
 			break;
 		}
 		input[bytes_read - 1] = '\0';

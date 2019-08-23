@@ -2,6 +2,7 @@
 #define ENVIRONMENT_H
 
 #include "stdlibwrapper.h"
+#include "linkedlist.h"
 
 extern char **environ;
 
@@ -16,5 +17,6 @@ extern env_t *env_head;
 void free_env(env_t *head);
 char *_getenv(const char *name);
 env_t *get_environment(void);
+str_ll *get_path(void);
 
 #endif /* ENVIRONMENT_H */

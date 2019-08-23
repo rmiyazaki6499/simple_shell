@@ -10,6 +10,7 @@ typedef struct str_ll_s
 } str_ll;
 
 str_ll *add_node_end(str_ll **head, const char *str);
+str_ll *add_node_at_index(str_ll **head, const char *str, size_t index);
 str_ll *_strtoll(char *str, char *delim);
 char *_which(char *cmd, str_ll *head);
 void free_linkedlist(str_ll *head);
