@@ -14,7 +14,6 @@ char *_getenv(const char *name)
 
 	for (; ep != NULL; ep = ep->next)
 	{
-		puts(ep->value);
 		if (_strncmp(ep->name, name, env_length) == 0)
 			return (ep->value);
 	}
