@@ -5,16 +5,18 @@
 char *_getenv(const char *name)
 {
 	size_t env_length, i;
+	env_t *ep = env_head;
 
-	if (!environ || !name)
+	if (!ep || !name)
 		return (NULL);
 
 	env_length = _strlen(name);
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (; ep != NULL; ep = ep->next)
 	{
-		if ((_strncmp(environ[i], name, env_length) == 0) && (environ[i][env_length] == '='))
-			return (environ[i] + env_length + 1);
+		puts(ep->value);
+		if (_strncmp(ep->name, name, env_length) == 0)
+			return (ep->value);
 	}
 	return (NULL);
 }

@@ -47,7 +47,7 @@ env_t *get_environment(void)
 		while ((*env_cpy)[name_len] && (*env_cpy)[name_len] != '=')
 			name_len++;
 
-		name = _strndup(*env_cpy, name_len + 1);
+		name = _strndup(*env_cpy, name_len);
 		if (!name)
 		{
 			free_env(head);
@@ -61,8 +61,6 @@ env_t *get_environment(void)
 			free_env(head);
 			return (NULL);
 		}
-
-		_strcpy(value, *env_cpy + name_len + 1);
 
 		add_env_node(&head, name, value);
 		env_cpy++;
