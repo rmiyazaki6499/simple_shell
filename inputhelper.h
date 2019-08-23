@@ -3,9 +3,6 @@
 
 #include <stdio.h>
 
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
-{
-	return (getline(lineptr, n, stream));
-}
+ssize_t _getline(char **lineptr, size_t *n, int fd);
 
 #endif /* INPUTHELPER_H */
