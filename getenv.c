@@ -1,11 +1,12 @@
 #include "environment.h"
 #include "stringwrapper.h"
 #include "linkedlist.h"
+#include "global.h"
 
 char *_getenv(const char *name)
 {
 	size_t env_length, i;
-	env_t *ep = env_head;
+	env_t *ep = get_global()->env_head;
 
 	if (!ep || !name)
 		return (NULL);

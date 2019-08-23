@@ -1,11 +1,12 @@
 #include "environment.h"
+#include "global.h"
 #include <stdio.h>
 
 int _printenv(char **arguments)
 {
-	const env_t *current_node = env_head;
+	const env_t *current_node = get_global()->env_head;
 
-	if (!env_head)
+	if (!current_node)
 		return (-1);
 
 	while (current_node != NULL)
