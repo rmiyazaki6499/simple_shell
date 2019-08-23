@@ -25,7 +25,6 @@ int main(void)
 
 	while (1)
 	{
-		// use isatty to avoid printing this
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
 
@@ -48,7 +47,6 @@ int main(void)
 			continue;
 		}
 
-		// run a builtin
 		function = get_builtin_func(child_program_argv[0]);
 		if (function)
 		{
@@ -87,7 +85,8 @@ int main(void)
 			}
 		}
 		else
-			wait(NULL);
+			wait(&(get_global()->status));
+
 		frees(3, input, child_program_name, child_program_argv);
 	}
 
