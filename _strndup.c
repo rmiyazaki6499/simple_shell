@@ -1,4 +1,5 @@
 #include "stringwrapper.h"
+#include "stdlibwrapper.h"
 
 /**
  * _strndup - a function that returns a pointer
