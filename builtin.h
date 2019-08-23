@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+extern int status;
+
 typedef struct builtin_func_t
 {
 	char *func_name;
@@ -30,5 +32,6 @@ char *get_builtin_sd(char *name);
 
 int _cd(char **arguments);
 int _printenv(char **arguments);
+int exit_(char** arguments);
 
 #endif /* BUILTIN_H */
