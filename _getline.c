@@ -5,7 +5,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
 	static char *buffer = NULL;
 	static size_t bufsize = 0;
-	char *buf120[120];
+	char buf120[120];
 	size_t bytes, position = 0;
 
 	if (*lineptr)
@@ -34,8 +34,8 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 
 		bufsize += 120;
 		buffer = _realloc(buffer, bufsize - 120, bufsize);
-		_strncpy((buffer + position), buf120, bytes); 
-		position += bytes;	
+		_strncpy((buffer + position), buf120, bytes);
+		position += bytes;
 	}
 	*lineptr = buffer;
 	*n = bufsize;
