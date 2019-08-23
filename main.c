@@ -8,8 +8,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-env_t *env_head = NULL;
+#include "global.h"
 
 int main(void)
 {
@@ -21,7 +20,7 @@ int main(void)
 	str_ll *path_ll;
 	int (*function)(char **name) = NULL;
 
-	env_head = get_environment();
+	get_global()->env_head = get_environment();
 	path_ll = get_path();
 
 	while (1)
@@ -73,7 +72,7 @@ int main(void)
 			perror("Error");
 			frees(3, input, child_program_name, child_program_argv);
 			free_linkedlist(path_ll);
-			free_env(env_head);
+			free_env(get_global()->env_head);
 			exit(1);
 		}
 		else if (child_pid == 0)
@@ -83,7 +82,7 @@ int main(void)
 				perror("Error");
 				frees(3, input, child_program_name, child_program_argv);
 				free_linkedlist(path_ll);
-				free_env(env_head);
+				free_env(get_global()->env_head);
 				exit(127);
 			}
 		}
@@ -92,7 +91,7 @@ int main(void)
 		frees(3, input, child_program_name, child_program_argv);
 	}
 
-	free_env(env_head);
+	free_env(get_global()->env_head);
 	free_linkedlist(path_ll);
 
 	return (EXIT_SUCCESS);
