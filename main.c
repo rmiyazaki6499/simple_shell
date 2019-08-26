@@ -26,7 +26,7 @@ int main(void)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("$ ");
+			_puts("$ ");
 
 		input = NULL;
 		input_length = 0;
