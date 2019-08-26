@@ -9,6 +9,13 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "global.h"
+#include <signal.h>
+
+void sigint_handler(int signum)
+{
+	if (isatty(STDIN_FILENO))
+		_puts("\n$ ");
+}
 
 int main(void)
 {
@@ -19,6 +26,8 @@ int main(void)
 	pid_t child_pid;
 	str_ll *path_ll;
 	int (*function)(char **name) = NULL;
+
+	signal(SIGINT, sigint_handler);
 
 	get_global()->env_head = get_environment();
 	path_ll = get_path();
