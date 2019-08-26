@@ -3,6 +3,15 @@
 
 #include <stdlib.h>
 
+
+/**
+ * struct str_ll_s - linked list
+ * @string: malloc'ed string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for simple shell
+ */
 typedef struct str_ll_s
 {
 	char *string;

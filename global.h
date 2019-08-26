@@ -3,7 +3,16 @@
 
 #include "environment.h"
 
-typedef struct global_s {
+/**
+ * struct global_s - struct for  global variables
+ * @env_head: pointer to environment linked list
+ * @status: last exit status
+ *
+ * Description: global variable structure
+ * for Simple Shell
+ */
+typedef struct global_s
+{
 	env_t *env_head;
 	int status;
 } global_t;

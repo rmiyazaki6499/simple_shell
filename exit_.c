@@ -5,6 +5,11 @@
 
 int _atoi(char *);
 
+/**
+ * is_number - a function that checks if a character is a number.
+ * @s: string
+ * Return: 1 if character is a number, 0 if not
+ */
 int is_number(char *s)
 {
 	while (*s)
@@ -17,7 +22,12 @@ int is_number(char *s)
 	return (1);
 }
 
-int exit_(char** arguments)
+/**
+ * exit_ - a function that exits a program.
+ * @arguments: input arguments
+ * Return: exit status
+ */
+int exit_(char **arguments)
 {
 	if (arguments[0] == NULL)
 		exit(WEXITSTATUS(get_global()->status));

@@ -5,6 +5,12 @@
 #include <unistd.h>
 #include <stdio.h>
 
+/**
+ * _which - a function that takes a command and returns a path.
+ * @cmd: input command
+ * @head: pointer to head node of str_ll
+ * Return: pointer to string
+ */
 char *_which(char *cmd, str_ll *head)
 {
 	size_t cmd_length, str_length;
@@ -34,5 +40,5 @@ char *_which(char *cmd, str_ll *head)
 		free(check_pointer);
 		head = head->next;
 	}
-	return(NULL);
+	return (NULL);
 }

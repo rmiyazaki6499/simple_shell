@@ -1,6 +1,12 @@
 #include "stringwrapper.h"
 #include <sys/types.h>
 
+/**
+ * get_nargs - a function that counts the number of arguments.
+ * @s: string of arguments
+ * @delim: delimiter
+ * Return: number of arguments
+ */
 ssize_t get_nargs(char *s, char *delim)
 {
 	size_t d_len;

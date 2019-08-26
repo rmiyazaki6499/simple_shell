@@ -2,9 +2,9 @@
 
 /**
  * _realloc - a function that reallocates a memory block using malloc and free
- * @ptr:
- * @old-size: old size of memory
- * @new_size: new size of memory
+ * @ptr: pointer to originally malloced memory
+ * @orig_length: old size of memory
+ * @new_length: new size of memory
  * Return: a pointer to the memory previously allocated with a call to malloc
  */
 void *_realloc(void *ptr, size_t orig_length, size_t new_length)
@@ -26,5 +26,5 @@ void *_realloc(void *ptr, size_t orig_length, size_t new_length)
 		_memcpy(new_ptr, ptr, orig_length);
 		free(ptr);
 	}
-	return(new_ptr);
+	return (new_ptr);
 }

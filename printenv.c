@@ -2,6 +2,11 @@
 #include "global.h"
 #include <stdio.h>
 
+/**
+ * _printenv - a function that prints the environment variables
+ * @arguments: environment variables
+ * Return: 0 on Success, -1 if failed
+ */
 int _printenv(char **arguments)
 {
 	const env_t *current_node = get_global()->env_head;
