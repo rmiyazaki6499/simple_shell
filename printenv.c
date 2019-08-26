@@ -1,4 +1,5 @@
 #include "environment.h"
+#include "stringwrapper.h"
 #include "global.h"
 #include <stdio.h>
 
@@ -10,6 +11,7 @@
 int _printenv(char **arguments)
 {
 	const env_t *current_node = get_global()->env_head;
+	(void) arguments;
 
 	if (!current_node)
 		return (-1);

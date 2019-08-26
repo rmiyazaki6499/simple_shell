@@ -1,6 +1,6 @@
 #include "builtin.h"
 
-char *get_builtin_sd(char *name)
+char *print_d(char *name)
 {
 	int i;
 

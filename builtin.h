@@ -17,23 +17,7 @@ typedef struct builtin_func_t
 {
 	char *func_name;
 	int (*function)(char **);
-	struct builtin_t_ *next;
 } builtin_func;
-
-/**
- * struct str_ll_s - linked list
- * @string: malloc'ed string
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- * for simple shell
- */
-typedef struct builtin_ld_t
-{
-	char *func_name;
-	char **long_description;
-	struct builtin_t_ *next;
-} builtin_ld;
 
 /**
  * struct str_ll_s - linked list
@@ -47,12 +31,10 @@ typedef struct builtin_sd_t
 {
 	char *func_name;
 	char *short_description;
-	struct builtin_t_ *next;
 } builtin_sd;
 
 int (*get_builtin_func(char *name))(char **name);
-char **get_builtin_ld(char *name);
-char *get_builtin_sd(char *name);
+char *print_d(char *name);
 
 int _cd(char **arguments);
 int _printenv(char **arguments);

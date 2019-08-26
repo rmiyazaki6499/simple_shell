@@ -2,7 +2,7 @@
 
 str_ll *get_path(void)
 {
-	str_ll *head = NULL, *p;
+	str_ll *head = NULL;
 	char *path_str = _getenv("PATH"), *start;
 	int add_current_dir = 0, index = -1;
 
