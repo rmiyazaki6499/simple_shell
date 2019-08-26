@@ -30,9 +30,15 @@ int is_number(char *s)
 int exit_(char **arguments)
 {
 	if (arguments[0] == NULL)
-		exit(WEXITSTATUS(get_global()->status));
+	{
+		free(global()->input);
+		exit(WEXITSTATUS(global()->status));
+	}
 	else if (is_number(arguments[0]))
+	{
+		free(global()->input);
 		exit(_atoi(arguments[0]));
+	}
 	else
 	{
 		puts("Bad input");
