@@ -20,6 +20,7 @@ typedef struct global_s
 	str_ll *path_ll;
 	char **child_argv;
 	size_t command_number;
+	char *previous;
 } global_t;
 
 global_t *global(void);

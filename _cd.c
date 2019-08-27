@@ -2,6 +2,7 @@
 #include "stdlibwrapper.h"
 #include "environment.h"
 #include <unistd.h>
+#include "global.h"
 
 /**
  * _cd - a function that changes the directory.
@@ -10,13 +11,12 @@
  */
 int _cd(char **arguments)
 {
-	static char *previous = NULL;
 	int status;
 	char *path, *home, *temp;
 	int free_path = 0;
 
-	if (!previous)
-		previous = getcwd(NULL, 0);
+	if (!global()->previous)
+		global()->previous = getcwd(NULL, 0);
 	home = _getenv("HOME");
 
 	if (!arguments || !arguments[0] || !arguments[0][0])
@@ -33,7 +33,7 @@ int _cd(char **arguments)
 	}
 	else if (_strcmp(arguments[0], "-") == 0)
 	{
-		path = _strdup(previous);
+		path = _strdup(global()->previous);
 		_puts(path);
 		_puts("\n");
 	}
@@ -44,8 +44,8 @@ int _cd(char **arguments)
 	status = chdir(path);
 	if (status == 0)
 	{
-		free(previous);
-		previous = temp;
+		free(global()->previous);
+		global()->previous = temp;
 	}
 	else
 		free(temp);

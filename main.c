@@ -70,6 +70,8 @@ void destruct(void)
 {
 	free_env(global()->env_head);
 	free_linkedlist(global()->path_ll);
+	if (global()->previous)
+		free(global()->previous);
 }
 
 /**
