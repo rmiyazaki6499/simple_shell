@@ -12,7 +12,8 @@ global_t *global(void)
 		0,
 		NULL,
 		NULL,
-		NULL
+		NULL,
+		0
 	};
 
 	return (&global);
