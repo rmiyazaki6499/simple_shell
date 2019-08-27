@@ -10,6 +10,7 @@ int (*get_builtin_func(char *name))(char **name)
 		{"env", _printenv},
 		{"cd", _cd},
 		{"exit", exit_},
+		{"help", _help},
 		{NULL, NULL}
 	};
 
