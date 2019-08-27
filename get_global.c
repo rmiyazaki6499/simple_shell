@@ -13,7 +13,8 @@ global_t *global(void)
 		NULL,
 		NULL,
 		NULL,
-		0
+		0,
+		NULL
 	};
 
 	return (&global);
