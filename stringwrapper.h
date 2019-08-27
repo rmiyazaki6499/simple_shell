@@ -8,6 +8,8 @@
 
 int _putchar(char c);
 void _puts(char *str);
+void print_error(char *argument);
+void _print_number(int n);
 size_t _strlen(const char *s);
 int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);

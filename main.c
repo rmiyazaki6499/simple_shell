@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include "stdlibwrapper.h"
 #include "global.h"
 #include <signal.h>
 
@@ -33,9 +33,7 @@ void handle_fork(pid_t child_pid, char *child_name)
 	if (child_pid < 0)
 	{
 		perror("Error");
-		frees(3, global()->input, child_name, global()->child_argv);
-		free_linkedlist(global()->path_ll);
-		free_env(global()->env_head);
+		frees(2, global()->input, child_name);
 		exit(1);
 	}
 	else if (child_pid == 0)
@@ -43,10 +41,9 @@ void handle_fork(pid_t child_pid, char *child_name)
 		if (execve(child_name, global()->child_argv, environ) == -1)
 		{
 			perror("Error");
+			global()->status = 126;
 			frees(3, global()->input, child_name, global()->child_argv);
-			free_linkedlist(global()->path_ll);
-			free_env(global()->env_head);
-			exit(127);
+			exit(126);
 		}
 	}
 	else
@@ -73,7 +70,6 @@ void destruct(void)
 {
 	free_env(global()->env_head);
 	free_linkedlist(global()->path_ll);
-	free(global()->child_argv);
 }
 
 /**
@@ -81,7 +77,7 @@ void destruct(void)
  *
  * Return: EXIT_SUCCESS on success, else an error code
  */
-int main(void)
+int main(int argc, char *argv[])
 {
 	ssize_t bytes_read;
 	char *child_name;
@@ -103,14 +99,14 @@ int main(void)
 			free(global()->input);
 			if (isatty(STDIN_FILENO))
 				putchar('\n');
-			break;
+			return (global()->status);
 		}
 		(global()->input)[bytes_read - 1] = '\0';
 
 		global()->child_argv = strtow(global()->input, " ");
 		if (!global()->child_argv)
 		{
-			free(global()->input);
+			frees(2, global()->input, global()->child_argv);
 			continue;
 		}
 
@@ -125,15 +121,21 @@ int main(void)
 		child_name = _which(global()->child_argv[0], global()->path_ll);
 		if (child_name == NULL)
 		{
-			perror(child_name);
+			global()->status = 127;
+			print_error(argv[0]);
 			frees(2, global()->input, global()->child_argv);
 			continue;
 		}
-
+		else if (access(child_name, X_OK) != 0)
+		{
+			global()->status = 126;
+			print_error(argv[0]);
+			frees(3, global()->input, child_name, global()->child_argv);
+			continue;
+		}
 		child_pid = fork();
 		handle_fork(child_pid, child_name);
 		frees(3, global()->input, child_name, global()->child_argv);
 	}
-
-	return (EXIT_SUCCESS);
+	return (global()->status);
 }
