@@ -29,22 +29,22 @@ void sigint_handler(int signum)
  * @child_name: path to child exectuable program
  * @child_argv: arguments for the child program
  */
-void handle_fork(pid_t child_pid, char *child_name, char **child_argv)
+void handle_fork(pid_t child_pid, char *child_name)
 {
 	if (child_pid < 0)
 	{
 		perror("Error");
-		frees(3, get_global()->input, child_name, child_argv);
+		frees(3, get_global()->input, child_name, get_global()->child_argv);
 		free_linkedlist(get_global()->path_ll);
 		free_env(get_global()->env_head);
 		exit(1);
 	}
 	else if (child_pid == 0)
 	{
-		if (execve(child_name, child_argv, environ) == -1)
+		if (execve(child_name, get_global()->child_argv, environ) == -1)
 		{
 			perror("Error");
-			frees(3, get_global()->input, child_name, child_argv);
+			frees(3, get_global()->input, child_name, get_global()->child_argv);
 			free_linkedlist(get_global()->path_ll);
 			free_env(get_global()->env_head);
 			exit(127);
@@ -86,12 +86,12 @@ int main(void)
 	ssize_t bytes_read;
 	char *child_name;
 	size_t input_length;
-	char **child_argv;
 	pid_t child_pid;
 	int (*function)(char **name) = NULL;
 
 	while (1)
 	{
+		(get_global()->command_number)++;
 		if (isatty(STDIN_FILENO))
 			_puts("$ ");
 
@@ -107,33 +107,33 @@ int main(void)
 		}
 		(get_global()->input)[bytes_read - 1] = '\0';
 
-		child_argv = strtow(get_global()->input, " ");
-		if (!child_argv)
+		get_global()->child_argv = strtow(get_global()->input, " ");
+		if (!get_global()->child_argv)
 		{
 			free(get_global()->input);
 			continue;
 		}
 
-		function = get_builtin_func(child_argv[0]);
+		function = get_builtin_func(get_global()->child_argv[0]);
 		if (function)
 		{
-			function(child_argv + 1);
-			frees(2, get_global()->input, child_argv);
+			function(get_global()->child_argv + 1);
+			frees(2, get_global()->input, get_global()->child_argv);
 			continue;
 		}
 
-		child_name = _which(child_argv[0], get_global()->path_ll);
+		child_name = _which(get_global()->child_argv[0], get_global()->path_ll);
 		if (child_name == NULL)
 		{
 			perror(child_name);
-			frees(2, get_global()->input, child_argv);
+			frees(2, get_global()->input, get_global()->child_argv);
 			continue;
 		}
 
 		child_pid = fork();
-		handle_fork(child_pid, child_name, child_argv);
+		handle_fork(child_pid, child_name);
 
-		frees(3, get_global()->input, child_name, child_argv);
+		frees(3, get_global()->input, child_name, get_global()->child_argv);
 	}
 
 	return (EXIT_SUCCESS);

@@ -9,6 +9,10 @@ global_t *get_global(void)
 {
 	static global_t global = {
 		NULL,
+		0,
+		NULL,
+		NULL,
+		NULL,
 		0
 	};
 

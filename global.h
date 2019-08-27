@@ -18,6 +18,8 @@ typedef struct global_s
 	int status;
 	char *input;
 	str_ll *path_ll;
+	char **child_argv;
+	size_t command_number;
 } global_t;
 
 global_t *get_global(void);
