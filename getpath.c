@@ -17,20 +17,22 @@ str_ll *get_path(void)
 		index = 0;
 		while (*start)
 		{
-			index++;
 			if (*start == ':')
+			{
+				index++;
 				if (*(start + 1) == ':' || *(start + 1) == '\0')
 				{
 					add_current_dir = 1;
 					break;
 				}
+			}
 			start++;
 		}
 	}
 
 	head = _strtoll(path_str, ":");
 	if (add_current_dir && index > -1)
-		add_node_at_index(&head, ".", index);
+		add_node_at_index(&head, "./", index);
 
 	return (head);
 }
