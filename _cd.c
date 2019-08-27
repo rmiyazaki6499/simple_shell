@@ -12,7 +12,7 @@
 int _cd(char **arguments)
 {
 	int status;
-	char *path, *home, *temp;
+	char *path, *home, *temp_previous;
 	int free_path = 0;
 
 	if (!global()->previous)
@@ -40,15 +40,15 @@ int _cd(char **arguments)
 	else
 		path = _strdup(arguments[0]);
 
-	temp = getcwd(NULL, 0);
+	temp_previous = getcwd(NULL, 0);
 	status = chdir(path);
 	if (status == 0)
 	{
 		free(global()->previous);
-		global()->previous = temp;
+		global()->previous = temp_previous;
 	}
 	else
-		free(temp);
+		free(temp_previous);
 
 	free(path);
 
