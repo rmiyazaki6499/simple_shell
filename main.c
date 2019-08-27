@@ -27,7 +27,6 @@ void sigint_handler(int signum)
  * handle_fork - handle the different paths a fork may take
  * @child_pid: pid of the child after a fork
  * @child_name: path to child exectuable program
- * @child_argv: arguments for the child program
  */
 void handle_fork(pid_t child_pid, char *child_name)
 {
@@ -51,7 +50,7 @@ void handle_fork(pid_t child_pid, char *child_name)
 		}
 	}
 	else
-		wait(&(get_global()->status));
+		wait(&(global()->status));
 }
 
 /**
@@ -62,8 +61,8 @@ void on_make(void)
 {
 	signal(SIGINT, sigint_handler);
 
-	get_global()->env_head = get_environment();
-	get_global()->path_ll = get_path();
+	global()->env_head = get_environment();
+	global()->path_ll = get_path();
 }
 
 /**
@@ -72,8 +71,9 @@ void on_make(void)
 void destruct(void) __attribute__ ((destructor));
 void destruct(void)
 {
-	free_env(get_global()->env_head);
-	free_linkedlist(get_global()->path_ll);
+	free_env(global()->env_head);
+	free_linkedlist(global()->path_ll);
+	free(global()->child_argv);
 }
 
 /**
@@ -95,22 +95,22 @@ int main(void)
 		if (isatty(STDIN_FILENO))
 			_puts("$ ");
 
-		get_global()->input = NULL;
+		global()->input = NULL;
 		input_length = 0;
-		bytes_read = getline(&(get_global()->input), &input_length, stdin);
+		bytes_read = getline(&(global()->input), &input_length, stdin);
 		if (bytes_read == -1)
 		{
-			free(get_global()->input);
+			free(global()->input);
 			if (isatty(STDIN_FILENO))
 				putchar('\n');
 			break;
 		}
-		(get_global()->input)[bytes_read - 1] = '\0';
+		(global()->input)[bytes_read - 1] = '\0';
 
 		get_global()->child_argv = strtow(get_global()->input, " ");
 		if (!get_global()->child_argv)
 		{
-			free(get_global()->input);
+			free(global()->input);
 			continue;
 		}
 
@@ -132,7 +132,6 @@ int main(void)
 
 		child_pid = fork();
 		handle_fork(child_pid, child_name);
-
 		frees(3, get_global()->input, child_name, get_global()->child_argv);
 	}
 

@@ -22,6 +22,6 @@ typedef struct global_s
 	size_t command_number;
 } global_t;
 
-global_t *get_global(void);
+global_t *global(void);
 
 #endif

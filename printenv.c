@@ -10,7 +10,7 @@
  */
 int _printenv(char **arguments)
 {
-	const env_t *current_node = get_global()->env_head;
+	const env_t *current_node = global()->env_head;
 	(void) arguments;
 
 	if (!current_node)
