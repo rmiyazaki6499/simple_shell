@@ -55,6 +55,7 @@ str_ll *_strtoll(char *str, char *delim)
 {
 	size_t length, delim_length;
 	str_ll *node = NULL;
+	char *value;
 
 	delim_length = _strlen(delim);
 	while (1)
@@ -69,7 +70,9 @@ str_ll *_strtoll(char *str, char *delim)
 		while (str[length] && _strncmp(str + length, delim, delim_length) != 0)
 			length++;
 
-		add_node_end(&node, _strndup(str, length));
+		value = _strndup(str, length);
+		add_node_end(&node, value);
+		free(value);
 		str += length;
 	}
 
