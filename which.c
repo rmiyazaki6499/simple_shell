@@ -20,6 +20,12 @@ char *_which(char *cmd, str_ll *head)
 	if (cmd[0] == '/' && stat(cmd, &st) == 0)
 		return (_strdup(cmd));
 
+	if (cmd[0] == '.' && cmd[1] == '/' && stat(cmd, &st) == 0)
+		return (_strdup(cmd));
+
+	if (cmd[0] == '.' && cmd[1] == '.' && stat(cmd, &st) == 0)
+		return (_strdup(cmd));
+
 	cmd_length = _strlen(cmd);
 
 	while (head)
