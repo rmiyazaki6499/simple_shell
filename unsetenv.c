@@ -2,6 +2,7 @@
 #include "environment.h"
 #include "stringwrapper.h"
 #include "global.h"
+#include "linkedlist.h"
 
 /**
  * delete_nodeint_at_index - a function that deletes the node
@@ -59,6 +60,11 @@ int _unsetenv(char **arguments)
 			break;
 		count += 1;
 		head = head->next;
+	}
+	if (_strcmp(head->name, "PATH") == 0)
+	{
+		free_linkedlist(global()->path_ll);
+		global()->path_ll = NULL;
 	}
 	delete_nodeint_at_index(&(global()->env_head), count);
 
