@@ -233,51 +233,11 @@ Implement the builtin command cd:
 * You have to handle the command cd -
 * You have to update the environment variable PWD when you change directory
 
-### [14. ;]()
-Simple shell 1.0
-* Handle the commands separator ;
-
-### [15. && and ||]()
-Simple shell 1.0
-* Handle the && and || shell logical operators
-
-### [16. alias]()
-Simple shell 1.0
-* Implement the alias builtin command
-* Usage: alias [name[='value'] ...]
-* alias: Prints a list of all aliases, one per line, in the form name='value'
-* alias name [name2 ...]: Prints the aliases name, name2, etc 1 per line, in the form name='value'
-* alias name='value' [...]: Defines an alias for each name whose value is given. If name is already an alias, replaces its value with value
-
-### [17. Variables]()
-Simple shell 1.0
-* Handle variables replacement
-* Handle the $? variable
-* Handle the $$ variable
-
-### [18. Comments]()
-Simple shell 1.0
-* Handle comments (#)
 
 ### [19. help]()
 Simple shell 1.0
 * Implement the help built-in
 * Usage: help [BUILTIN]
-
-### [20. history]()
-Simple shell 1.0
-Implement the history built-in, without any argument
-* The history built-in displays the history list, one command by line, preceded with line numbers (starting at 0)
-* On exit, write the entire history, without line numbers, to a file named .simple_shell_history in the directory $HOME
-* When the shell starts, read the file .simple_shell_history in the directory $HOME if it exists, and set the first line number to the total number of lines in the file modulo 4096
-
-### [21. File as input]()
-Simple shell 1.0
-* Usage: simple_shell [filename]
-* Your shell can take a file as a command line argument
-* The file contains all the commands that your shell should run before exiting
-* The file should contain one command per line
-* In this mode, the shell should not print a prompt and should not read from stdin
 
 ---
 ## Author
