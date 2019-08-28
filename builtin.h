@@ -47,4 +47,6 @@ int _printenv(char **arguments);
 int exit_(char **arguments);
 int _setenv(char **arguments);
 
+int _unsetenv(char **arguments);
+
 #endif /* BUILTIN_H */

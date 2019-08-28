@@ -27,4 +27,6 @@ char *_getenv(const char *name);
 env_t *get_environment(void);
 str_ll *get_path(void);
 
+int delete_nodeint_at_index(env_t **head, unsigned int index);
+
 #endif /* ENVIRONMENT_H */
