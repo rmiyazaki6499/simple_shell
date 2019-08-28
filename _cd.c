@@ -18,7 +18,6 @@ int _cd(char **arguments)
 	if (!global()->previous)
 		global()->previous = getcwd(NULL, 0);
 	home = _getenv("HOME");
-
 	if (!arguments || !arguments[0] || !arguments[0][0])
 		path = _strdup(home);
 	else if (arguments[0][0] == '~')
@@ -49,8 +48,6 @@ int _cd(char **arguments)
 	}
 	else
 		free(temp_previous);
-
 	free(path);
-
 	return (status);
 }

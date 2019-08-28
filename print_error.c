@@ -1,6 +1,10 @@
 #include "stringwrapper.h"
 #include "global.h"
 
+/**
+ * print_error - a function that prints an error.
+ * @argument: argument from command line
+ */
 void print_error(char *argument)
 {
 	_puts(argument);
