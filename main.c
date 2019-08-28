@@ -53,29 +53,27 @@ void handle_fork(pid_t child_pid, char *child_name)
 /**
  * on_make - setup things
  */
-/*
- *void on_make(void) __attribute__ ((constructor));
- *void on_make(void)
- *{
- *signal(SIGINT, sigint_handler);
+void on_make(void) __attribute__ ((constructor));
+void on_make(void)
+{
+	signal(SIGINT, sigint_handler);
 
- *global()->env_head = get_environment();
- *global()->path_ll = get_path();
- *}
- */
+	global()->env_head = get_environment();
+	global()->path_ll = get_path();
+}
+
 /**
  * destruct - free some global variables
  */
-/*
- *void destruct(void) __attribute__ ((destructor));
- *void destruct(void)
- *{
- *	free_env(global()->env_head);
- *	free_linkedlist(global()->path_ll);
- *	if (global()->previous)
- *		free(global()->previous);
- *}
- */
+void destruct(void) __attribute__ ((destructor));
+void destruct(void)
+{
+	free_env(global()->env_head);
+	free_linkedlist(global()->path_ll);
+	if (global()->previous)
+		free(global()->previous);
+}
+
 /**
  * main - entry point for shell program
  * @argc: argument count
@@ -90,11 +88,6 @@ int main(int argc, char *argv[])
 	pid_t child_pid;
 	int (*function)(char **name) = NULL;
 	(void) argc;
-
-	signal(SIGINT, sigint_handler);
-
-	global()->env_head = get_environment();
-	global()->path_ll = get_path();
 
 	while (1)
 	{
