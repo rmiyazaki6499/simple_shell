@@ -9,8 +9,7 @@ shelly — command interpreter (simple shell)
 .B shelly is an sh-compatible command language interpreter that executes commands read from the standard input.
 
 .B Overview
-     The shell is a command that reads lines from either a file or the termina
-l, interprets them, and generally executes other commands.  It is the program that is running when a user logs into the system.  The shell implements a language that has flow control constructs, a macro facility that provides a variety of features in addition to data storage, along with built in capabilities.  It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts). That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
+     The shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is the program that is running when a user logs into the system.  The shell implements a language that has flow control constructs, a macro facility that provides a variety of features in addition to data storage, along with built in capabilities.  It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts). That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
 
 .B Builtin functions in shelly
 
@@ -20,7 +19,7 @@ l, interprets them, and generally executes other commands.  It is the program th
 - exits the shell
 - Usage: exit status, where status is an integer used to exit the shell
 .IP cd
-- prints a percentage symbol
+- change the current working directory
 .IP help
 - prints a description of the builtin function
 .IP setenv
