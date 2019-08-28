@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 
 		global()->input = NULL;
 		input_length = 0;
-		bytes_read = getline(&(global()->input), &input_length, STDIN_FILENO);
+		bytes_read = getline(&(global()->input), &input_length, stdin);
 		if (bytes_read == -1)
 		{
 			free(global()->input);
