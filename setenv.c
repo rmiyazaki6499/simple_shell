@@ -35,7 +35,8 @@ int _setenv(char **arguments)
 			{
 				free_linkedlist(global()->path_ll);
 				global()->path_ll = NULL;
-				add_node_end(&(global()->path_ll), value);
+				if (value[0])
+					add_node_end(&(global()->path_ll), value);
 			}
 			free(head->value);
 			head->value = _strdup(value);
