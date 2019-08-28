@@ -1,50 +1,68 @@
-#include "stringwrapper.h"
 #include "stdlibwrapper.h"
+#include <unistd.h>
+
+#define BUFSIZE 120
 
 /**
- * _getline - a function that reads an entire line from standard input.
- * @lineptr: pointer to an array of arguments
- * @n: number of bytes to allocate memory
- * @fd: file descriptor
- * Return: number of arguments read
+ * _getdelim - get a line from a file
+ * @lineptr: buffer to fill with contents of line
+ * @n: size of buffer to fill
+ * @fd: file to read from
+ * @delim: line delimiter in the file
+ *
+ * Return: Number of bytes read from the file
+ */
+ssize_t _getdelim(char **lineptr, size_t *n, int fd, char delim)
+{
+	char buf[BUFSIZE];
+	ssize_t bytes_read;
+	size_t i = 0;
+
+	if (!lineptr || !n)
+		return (-1);
+	if (!*lineptr && !*n)
+	{
+		*lineptr = malloc(sizeof(**lineptr) * BUFSIZE);
+		if (!*lineptr)
+			return (-1);
+		*n = BUFSIZE;
+	}
+	while (1)
+	{
+		bytes_read = read(fd, buf, BUFSIZE);
+		if (bytes_read < 1)
+			return (-1);
+		while (i < *n)
+		{
+			if (bytes_read < BUFSIZE && i == (size_t)bytes_read)
+				break;
+			(*lineptr)[i] = buf[i % BUFSIZE];
+			if (buf[i % BUFSIZE] == delim)
+			{
+				i++;
+				break;
+			}
+			i++;
+		}
+		if (i < *n || buf[i - 1] == delim)
+			break;
+		*lineptr = realloc(*lineptr, *n + BUFSIZE);
+		if (!*lineptr)
+			return (-1);
+		*n += BUFSIZE;
+	}
+	return (i);
+}
+
+/**
+ * _getline - get a line from a file
+ * @lineptr: buffer to fill with contents of line
+ * @n: size of buffer to fill
+ * @fd: file to read from
+ *
+ * Return: Number of bytes read from the file
  */
 ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
-	static char *buffer;
-	static size_t bufsize;
-	char buf120[120];
-	ssize_t bytes, position = 0;
-
-	if (*lineptr)
-	{
-		if (*n > bufsize)
-		{
-			free(buffer);
-			buffer = *lineptr;
-		}
-		else if ((*n < bufsize) || (*lineptr != buffer))
-		{
-			free(*lineptr);
-			*n = bufsize;
-		}
-	}
-	else if (!buffer)
-	{
-		buffer = malloc(120);
-		bufsize = 120;
-	}
-
-	while ((bytes = read(fd, buf120, 120)))
-	{
-		if (bytes == -1)
-			exit(1);
-
-		bufsize += 120;
-		buffer = _realloc(buffer, bufsize - 120, bufsize);
-		_strncpy((buffer + position), buf120, bytes);
-		position += bytes;
-	}
-	*lineptr = buffer;
-	*n = bufsize;
-	return (position);
+	return (_getdelim(lineptr, n, fd, '\n'));
 }

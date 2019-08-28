@@ -94,10 +94,11 @@ int main(int argc, char *argv[])
 		(global()->command_number)++;
 		if (isatty(STDIN_FILENO))
 			_puts("$ ");
+		fflush(stdout);
 
 		global()->input = NULL;
 		input_length = 0;
-		bytes_read = getline(&(global()->input), &input_length, stdin);
+		bytes_read = _getline(&(global()->input), &input_length, STDIN_FILENO);
 		if (bytes_read == -1)
 		{
 			free(global()->input);
