@@ -13,7 +13,6 @@ int _cd(char **arguments)
 {
 	int status;
 	char *path, *home, *temp_previous;
-	int free_path = 0;
 
 	if (!global()->previous)
 		global()->previous = getcwd(NULL, 0);
@@ -25,7 +24,6 @@ int _cd(char **arguments)
 		path = malloc(sizeof(*path) * (_strlen(home) + _strlen(arguments[0])));
 		if (!path)
 			return (-1);
-		free_path = 1;
 
 		path = _strcpy(path, home);
 		path = _strcat(path, arguments[0] + 1);

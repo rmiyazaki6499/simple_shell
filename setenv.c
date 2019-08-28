@@ -3,6 +3,8 @@
 #include "stringwrapper.h"
 #include "global.h"
 
+env_t *add_env_node(env_t **head, char *name, char *value);
+
 int _setenv(char **arguments)
 {
 	env_t *head = global()->env_head;
