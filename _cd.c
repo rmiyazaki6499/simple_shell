@@ -19,14 +19,14 @@ int _cd(char **arguments)
 	home = _getenv("HOME");
 	if (!arguments || !arguments[0] || !arguments[0][0])
 		path = _strdup(home);
-	else if (arguments[0][0] == '~')
+	else if (arguments[0][0] == '~' || _strncmp(arguments[0], "$HOME", 5) == 0)
 	{
 		path = malloc(sizeof(*path) * (_strlen(home) + _strlen(arguments[0])));
 		if (!path)
 			return (-1);
 
 		path = _strcpy(path, home);
-		path = _strcat(path, arguments[0] + 1);
+		path = _strcat(path, arguments[0] + (arguments[0][0] == '~' ? 1 : 5));
 	}
 	else if (_strcmp(arguments[0], "-") == 0)
 	{
