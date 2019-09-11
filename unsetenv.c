@@ -66,7 +66,8 @@ int _unsetenv(char **arguments)
 		free_linkedlist(global()->path_ll);
 		global()->path_ll = NULL;
 	}
-	delete_nodeint_at_index(&(global()->env_head), count);
+	if (head)
+		delete_nodeint_at_index(&(global()->env_head), count);
 
 	return (-1);
 }
